@@ -157,7 +157,7 @@ const BookingDetailPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
         <div className="mb-4 sm:mb-0">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Booking Details</h1>
-          <p className="mt-2 text-sm sm:text-base text-gray-600 break-all">Booking ID: {booking._id}</p>
+          {/* <p className="mt-2 text-sm sm:text-base text-gray-600 break-all">Booking ID: {booking._id}</p> */}
         </div>
         
         {/* Action buttons - responsive layout */}
