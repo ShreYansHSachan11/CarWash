@@ -8,7 +8,13 @@ const ShareButton = ({ booking, className = '', children }) => {
   return (
     <>
       <button
-        onClick={() => setShowShareModal(true)}
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Share button clicked for booking:', booking?._id);
+          setShowShareModal(true);
+        }}
         className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${className}`}
       >
         <Share2 className="h-4 w-4 mr-2" />

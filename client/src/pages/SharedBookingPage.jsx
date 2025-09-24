@@ -22,10 +22,14 @@ const SharedBookingPage = () => {
       setLoading(true);
       setError(null);
       
+      console.log('Fetching shared booking with ID:', id, 'and token:', token);
+      
       // For now, we'll use the regular booking API
       // In a real implementation, you'd have a separate endpoint for shared bookings
       const response = await bookingAPI.getBookingById(id);
-      setBooking(response.booking || response);
+      console.log('Shared booking response:', response);
+      console.log('Booking data structure:', JSON.stringify(response, null, 2));
+      setBooking(response.data || response.booking || response);
     } catch (err) {
       console.error('Error fetching shared booking:', err);
       if (err.response?.status === 404) {
@@ -48,7 +52,7 @@ const SharedBookingPage = () => {
   };
 
   const formatPrice = (price) => {
-    return `$${price.toFixed(2)}`;
+    return `$${(price || 0).toFixed(2)}`;
   };
 
   const getStatusIcon = (status) => {
@@ -179,9 +183,9 @@ const SharedBookingPage = () => {
                   <div>
                     <p className="text-sm font-medium text-gray-500">Vehicle</p>
                     <p className="text-gray-900">
-                      {booking.carDetails.year} {booking.carDetails.make} {booking.carDetails.model}
+                      {booking.carDetails?.year || 'N/A'} {booking.carDetails?.make || 'N/A'} {booking.carDetails?.model || 'N/A'}
                     </p>
-                    <p className="text-sm text-gray-600 capitalize">{booking.carDetails.type}</p>
+                    <p className="text-sm text-gray-600 capitalize">{booking.carDetails?.type || 'N/A'}</p>
                   </div>
                 </div>
 

@@ -33,7 +33,9 @@ const ShareBooking = ({ booking, isOpen, onClose }) => {
       setLoading(true);
       setError(null);
       
+      console.log('Generating QR code for booking:', booking._id);
       const result = await sharingService.generateQRCode(booking._id);
+      console.log('QR code generated successfully:', result.shareUrl);
       setQrCode(result.dataUrl);
       setShareUrl(result.shareUrl);
     } catch (err) {
@@ -80,7 +82,12 @@ const ShareBooking = ({ booking, isOpen, onClose }) => {
     window.open(url, '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
   };
 
-  if (!booking) return null;
+  if (!booking) {
+    console.log('ShareBooking: No booking data, returning null');
+    return null;
+  }
+
+  console.log('ShareBooking: Rendering modal with booking:', booking._id);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Share Booking">

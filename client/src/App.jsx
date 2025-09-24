@@ -14,14 +14,15 @@ function App() {
     <ErrorBoundary>
       <Router>
         <Routes>
+          {/* Public routes (no layout) - must come before the layout routes */}
+          <Route path="booking/shared/:id" element={<SharedBookingPage />} />
+          
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="booking/:id" element={<BookingDetailPage />} />
             <Route path="booking/:id/edit" element={<EditBookingPage />} />
             <Route path="add-booking" element={<AddBookingPage />} />
           </Route>
-          {/* Public routes (no layout) */}
-          <Route path="booking/shared/:id" element={<SharedBookingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
